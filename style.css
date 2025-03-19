@@ -1,26 +1,24 @@
 .board {
   /* position: relative; */
-display: grid
-;
-    grid-template-columns: repeat(3, 5em);
-    grid-template-rows: repeat(3, 6em);
-    gap: 1em;
-    justify-content: center;
-    width: 22%;
-    margin: 20px auto;
-    margin-top: 25vh;
+  display: grid;
+  grid-template-columns: repeat(3, 5em);
+  grid-template-rows: repeat(3, 6em);
+  gap: 1em;
+  justify-content: center;
+  width: 22%;
+  margin: 20px auto;
+  margin-top: 25vh;
 }
 
 .cell {
-width: 2em;
-    height: 2em;
-    border: 2px solid rgb(73, 116, 83);
-    font-size: 2rem;
-    display: flex
-;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  width: 2em;
+  height: 2em;
+  border: 2px solid rgb(73, 116, 83);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 #winLine {
