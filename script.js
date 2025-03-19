@@ -1,7 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const statusO =  document.getElementById('status');
 const restart = document.getElementById('restart');
-
+const winLine = document.getElementById('winLine');
 
 const winningPattern = [
     [0,1,2],[3,4,5],[6,7,8],
@@ -32,6 +32,7 @@ const checkIfWon = () => {
         if(inputs[a] && inputs[a] === inputs[b] && inputs[a] === inputs[c]){
             gameIsLive = false;
             statusO.innerHTML = `${currentPlayer} has won!`;
+            drawWinLine(a, c); // Draw the line between the first and last cell of the winning pattern
             return;
         }
     }
@@ -39,14 +40,43 @@ const checkIfWon = () => {
         gameIsLive = false;
         statusO.innerHTML = 'It is a draw!';
     }
-}
+};
+
+const drawWinLine = (startIdx, endIdx) => {
+    const startCell = cells[startIdx].getBoundingClientRect();
+    const endCell = cells[endIdx].getBoundingClientRect();
+    const boardRect = document.querySelector('.board').getBoundingClientRect();
+
+    // Calculate start and end positions
+    const x1 = startCell.left + startCell.width / 2 
+    // - boardRect.left;
+    const y1 = startCell.top + startCell.height / 2 
+    // - boardRect.top;
+    const x2 = endCell.left + endCell.width / 2 
+    // - boardRect.left;
+    const y2 = endCell.top + endCell.height / 2 
+    // - boardRect.top;
+
+    // Calculate line length and angle
+    const length = Math.hypot(x2 - x1, y2 - y1);
+    const angle = Math.atan2(y2 - y1, x2 - x1) 
+    * (180 / Math.PI);
+
+    // Apply styles to draw the line
+    winLine.style.display = 'block';
+    winLine.style.width = `${length}px`;
+    winLine.style.left = `${x1}px`;
+    winLine.style.top = `${y1}px`;
+    winLine.style.transform = `rotate(${angle}deg)`;
+};
 
 restart.addEventListener('click', () => {
     gameIsLive = true;
     currentPlayer = "X";
     inputs = ['','','','','','','','',''];
     statusO.innerHTML = '';
-    cells.forEach((cells) => {
-        cells.textContent = '';
-    })
-})
+    winLine.style.display = 'none';
+    cells.forEach((cell) => {
+        cell.textContent = '';
+    });
+});

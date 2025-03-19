@@ -1,17 +1,35 @@
-.board{
-  display:grid;
-/*  border:2px solid black; */
-  grid-template-columns: repeat(3,100px);
-  grid-template-rows: repeat(3,100px);
-    justify-content:center;
-      margin: 20px auto;
+.board {
+  /* position: relative; */
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+  gap: 5px;
+  width: 22%;
+  margin: 20px auto;
+  margin-top: 25vh;
 }
+
 .cell {
   width: 100px;
-  height:100px;
-  border: 2px solid black;
+  height: 100px;
+  border: 2px solid rgb(73, 116, 83);
+  font-size: 2rem;
   display: flex;
-  justify-content:center;
-  align-items:center;
-  font-size: x-large;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#winLine {
+  position: absolute;
+  background-color: red;
+  height: 5px;
+  display: none;
+  transition: all 0.5s ease-in-out;
+  transform-origin: left center;
+}
+
+* {
+  background-color: rgb(42, 45, 52);
+  color: #fff;
 }
